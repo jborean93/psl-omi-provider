@@ -257,11 +257,12 @@ MI_EXPORT MI_Uint32 WINAPI WSManCreateSession(
         case WSMAN_FLAG_AUTH_BASIC:
             userCredentials.authenticationType = MI_AUTH_TYPE_BASIC;
             break;
-        case WSMAN_FLAG_AUTH_NEGOTIATE:
-            userCredentials.authenticationType = MI_AUTH_TYPE_NEGO_WITH_CREDS;
-            break;
         case WSMAN_FLAG_AUTH_KERBEROS:
             userCredentials.authenticationType = MI_AUTH_TYPE_KERBEROS;
+            break;
+        case WSMAN_FLAG_AUTH_NEGOTIATE:
+        case WSMAN_FLAG_DEFAULT_AUTHENTICATION:
+            userCredentials.authenticationType = MI_AUTH_TYPE_NEGO_WITH_CREDS;
             break;
         default:
             GOTO_ERROR("Unsupported authentication type", MI_RESULT_ACCESS_DENIED);
